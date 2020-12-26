@@ -52,6 +52,8 @@ kubectl describe deployment myapp-deployment
 
 kubectl get all
 
+kubectl scale deployment myapp-deployment --replicas=3
+
 UPDATE AND ROLLBACK:
 ----------------------
 Recrate and RollingUpdate

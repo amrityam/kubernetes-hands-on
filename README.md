@@ -1,19 +1,21 @@
 # kubernetes-hands-on
 
-**Prerequisites**
+**Prerequisites:**
 * Docker
 * kubernetes-cli (kubectl) : https://kubernetes.io/docs/tasks/tools/install-kubectl/
 * minikube : https://minikube.sigs.k8s.io/docs/start/ 
 * Virtualbox version 5.2+ ([or other minikube compatible hypervisors][minikube-hypervisors])
 
 As an alternative if you are using Windows/Mac system, you can install docker desktop which provides native kubernetes support.
-#### **References:**
+
+**References:**
+
 Install K8 through Docker desktop for Windows: https://birthday.play-with-docker.com/kubernetes-docker-desktop/
 
 Install K8 through Docker desktop for Mac: https://medium.com/backbase/kubernetes-in-local-the-easy-way-f8ef2b98be68
 
 
-### **Architecture**
+**demo-voting-app Architecture**
 
 ![arc_diagram!](/images/voting-app-architecture-diagram.png)
 
@@ -26,19 +28,19 @@ Install K8 through Docker desktop for Mac: https://medium.com/backbase/kubernete
 * A Postgres DB which store the vote count from worker
 * A Node.js webapp which shows the results of the voting in real time
 
-Run the appplication in Kubernetes
------------------------------------
+## Run the appplication in Kubernetes ##
+------------------------------------------
 Clone this repo:
 git clone https://github.com/amrityam/kubernetes-hands-on.git
 
-First create the vote namespace
+First create the demo-voting-app namespace:
 ```
 kubectl create namespace demo-voting-app
 ```
 
 Run the following command to create the deployments and services objects:
 ```
-cd kubernetes-hands-on
+cd kubernetes-hands-on\demo-voting-app\k8-specifications
 
 kubectl create -f deployments\voting-app-deployment.yaml
 kubectl create -f services\voting-app-service.yaml
@@ -54,16 +56,34 @@ kubectl create -f deployments\worker-app-deployment.yaml
 kubectl create -f deployments\result-app-deployment.yaml
 kubectl create -f services\result-app-service.yaml
 
-kubectl get pods,svc --namespace demo-voting-app
+
 ```
-The voting-app is available on port 30004 and the result-app one is available on port 30005.
+Now validate all the deployments and pods are running fine by using below command.
+```
+kubectl get deployments,pods,svc --namespace demo-voting-app
+```
+![validate_pods_deployments!](/images/validate_pods_deployments.png)
+
+The voting-app is now available on port 30004 and the result-app one is running on port 30005.
 
 
 ![voting-app!](/images/voting-app.png)
 
-![voting-app!](/images/result-app.png)
+![result-app!](/images/result-app.png)
 
-To stop the application and to delete all deployments and services for demo-voting-app run below command.
+## Scale up the deployments:
+```
+kubectl scale deployments voting-app-deploy --replicas=3 --namespace demo-voting-app
+```
+![scale-up!](/images/scale-up.png)
+
+Now refresh the voting-app page and you can notice each time the page is served by a new pod.
+
+![scale-up-pod1!](/images/scale-up-pod1.png) 
+![scale-up-pod2!](/images/scale-up-pod2.png)
+
+## Clean up resources and delete namespace:
+To stop the application and delete all resources for demo-voting-app run below command to delete the namespace we have created earlier.
 
 ```
 kubectl delete namespace demo-voting-app

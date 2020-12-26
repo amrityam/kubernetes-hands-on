@@ -63,7 +63,7 @@ The voting-app is available on port 30004 and the result-app one is available on
 
 ![voting-app!](/images/result-app.png)
 
-To stop the application and to delete all deployments and services run below command.
+To stop the application and to delete all deployments and services for demo-voting-app run below command.
 
 ```
 kubectl delete namespace demo-voting-app

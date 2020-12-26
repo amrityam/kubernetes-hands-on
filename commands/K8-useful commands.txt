@@ -1,0 +1,101 @@
+1)Create a new pod with the NGINX image
+kubectl run nginx --image=nginx
+
+2)What is the image used to create the new pods?
+kubectl describe pod newpod
+kubectl get pods -o wide
+
+3)How many containers are part of the pod 'webapp'?
+kubectl describe pod webapp
+
+4)What does the READY column in the output of the 'kubectl get pods' command indicate?
+Running containers in POD/Total conrainers in POD
+
+5)Delete the 'webapp' Pod.
+kubectl delete pod webapp
+
+6)Create a new pod with the name 'redis' and with the image 'redis123'
+kubectl run redis --image=redis123 --dry-run=client -o yaml > pod.yaml
+kubectl apply -f pod.yaml
+
+7)Now fix the image on the pod to 'redis'
+Update the pod-definition file and use 'kubectl apply' command or use 'kubectl edit pod redis' command.
+
+
+REPLICA SETS:
+----------------------------------------------------------------------------------
+kubectl create -f replicaset-defintion.yaml
+
+kubectl get replicaset
+
+kubectl delete replicaset myapp-replicaset  * Also deletes all underlying pods
+
+kubectl edit replicaset myapp-replicaset : directly changes applied in the running cluster 
+kubectl replace -f replicaset-defintion.yaml
+
+kubectl scale relicaset myapp-replicaset --replicas=2
+
+kubectl scale --replicas=6 -f replicaset-defintion.yaml
+
+kubectl describe replicaset myapp-replicaset
+
+
+DEPLOYMENTS:
+-------------------------------------------------------------------------------
+kubectl create -f deployment.yaml
+
+kubectl get deployments
+
+kubectl get pods
+
+kubectl describe deployment myapp-deployment
+
+kubectl get all
+
+UPDATE AND ROLLBACK:
+----------------------
+Recrate and RollingUpdate
+kubectl create -f deployment.yaml
+kubectl get deployments
+
+kubectl apply -f deployment-definition.yaml
+kubectl set image deployment/myapp-deployment nginx=nginx:1.9.1
+
+kubectl rollout status deployment/myapp-deployment
+
+kubectl rollout history deployment/myapp-deployment
+
+kubectl rollout undo deployment/myapp-deployment  -  to rollback
+
+
+SERVICES
+------------
+kubectl get svc
+kubectl create -f service-definition.yaml
+
+To find the IP of service: minikube service <service_name> --url
+
+DELETE:
+-----------------------------
+kubectl delete --all pods
+kubectl delete --all services
+kubectl delete --all deployments
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

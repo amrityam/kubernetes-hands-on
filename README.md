@@ -83,7 +83,7 @@ Now refresh the voting-app page and you can notice each time the page is served 
 ![scale-up-pod2!](/images/scale-up-pod2.png)
 
 ## Clean up resources and delete namespace:
-To stop the application and delete all resources for demo-voting-app run below command to delete the namespace we have created earlier.
+To stop the application and delete all resources run the below command which deletes the namespace we have created earlier.
 
 ```
 kubectl delete namespace demo-voting-app

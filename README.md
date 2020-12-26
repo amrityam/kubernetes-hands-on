@@ -15,14 +15,15 @@ Install K8 through Docker desktop for Windows: https://birthday.play-with-docker
 Install K8 through Docker desktop for Mac: https://medium.com/backbase/kubernetes-in-local-the-easy-way-f8ef2b98be68
 
 
-**demo-voting-app Architecture**
+**demo-voting-app Microservice Architecture**
 
 ![arc_diagram!](/images/voting-app-architecture-diagram.png)
 
+**demo-voting-app with Pods and Services**
 
 ![K8_diagram!](/images/voting-app-pods-services.png)
 
-**Deployment Architecture**
+**demo-voting-app Deployment with Scale up Architecture**
 
 ![K8_deployment_diagram!](/images/voting-app-deployment.png)
 

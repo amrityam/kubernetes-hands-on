@@ -22,6 +22,10 @@ Install K8 through Docker desktop for Mac: https://medium.com/backbase/kubernete
 
 ![K8_diagram!](/images/voting-app-pods-services.png)
 
+**Deployment Architecture**
+
+![K8_deployment_diagram!](/images/voting-app-deployment.png)
+
 * A front-end web app in Python which lets you vote between two options
 * A Redis queue which collects new votes
 * A .NET Core worker which consumes votes and stores them in Postgres database
